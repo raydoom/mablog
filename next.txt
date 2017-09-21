@@ -26,4 +26,22 @@
 	安装依赖
 	pip install -r requirements.txt
 
-4：
+	docker 
+	yum -y install gcc gcc-c++ wget
+	wget "https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz"
+	tar -zxvf Python-3.5.0.tgz
+	1 sudo mkdir /usr/local/python3
+	2 sudo Python-3.5.0/configure --prefix=/usr/local/python3
+	3 sudo make
+	4 sudo make install
+
+	wget https://pypi.python.org/packages/11/b6/abcb525026a4be042b486df43905d6893fb04f05aac21c32c638e939e447/pip-9.0.1.tar.gz#md5=35f01da33009719497f01a4ba69d63c9
+
+	tar -zvxf pip-9.0.1.tar.gz
+	cd pip-9.0.1
+	/usr/local/python3/bin/python3 setup.py install
+	/usr/local/python3/bin/pip
+
+4：更新模型 迁移数据库
+	python manage.py makemigrations
+	python manage.py migrate

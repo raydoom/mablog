@@ -35,11 +35,17 @@ class Post(models.Model): #文章内容
 
     author = models.ForeignKey(User)
 
+    views = models.PositiveIntegerField(default=0)  #阅读量  
+
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
     	return reverse('blog_app:detail',kwargs = {'pk':self.pk})
+
+    def increase_views(self): #更新阅读量函数
+        self.views +=1
+        self.save(update_fields=['views'])
 
     #用户 myuser  密码 mxd123456
 
