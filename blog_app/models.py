@@ -6,6 +6,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.six import python_2_unicode_compatible
+import markdown
 
 # Create your models here.
 
@@ -46,6 +47,16 @@ class Post(models.Model): #文章内容
     def increase_views(self): #更新阅读量函数
         self.views +=1
         self.save(update_fields=['views'])
+
+    def save(self,*args,**kwargs): #自动生成摘要
+        if not self.excerpt:
+            md = markdown.Markdown(extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite',
+                ])
+            self.excerpt = md.convert(self.body)[:54]
+        super(Post, self).save(*args, **kwargs)
+   
 
     #用户 myuser  密码 mxd123456
 
