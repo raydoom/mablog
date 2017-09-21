@@ -4,6 +4,7 @@
 from django.db import models
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.utils.six import python_2_unicode_compatible
 
 # Create your models here.
@@ -19,7 +20,7 @@ class Tag(models.Model): #标签
     def __str__(self):
         return self.name
 
-
+@python_2_unicode_compatible
 class Post(models.Model): #文章内容
     title = models.CharField(max_length=70)
     body = models.TextField()
@@ -37,4 +38,9 @@ class Post(models.Model): #文章内容
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+    	return reverse('blog_app:detail',kwargs = {'pk':self.pk})
+
     #用户 myuser  密码 mxd123456
+
+
