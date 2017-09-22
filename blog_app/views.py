@@ -85,10 +85,17 @@ class IndexView(ListView): #index 类视图
 
 
 
-def archives(request,year,month): #归档函数视图
-	post_list = Post.objects.filter(created_time__year = year,
-									created_time__month = month).order_by('-created_time')
-	return render(request, 'blog/index.html', context={'post_list': post_list})
+#def archives(request,year,month): #归档函数视图
+#	post_list = Post.objects.filter(created_time__year = year,
+#									created_time__month = month).order_by('-created_time')
+#	return render(request, 'blog/index.html', context={'post_list': post_list})
+
+class ArchivesView(IndexView):
+	def get_queryset(self):
+		year = self.kwargs.get('year')
+		month = self.kwargs.get('month')
+		return super(ArchivesView,self).get_queryset().filter(created_time__year = year,
+															  created_time__month = month)
 
 #def category(request,pk): #目录函数视图
 #	cate = get_object_or_404(Category, pk=pk)
@@ -97,7 +104,8 @@ def archives(request,year,month): #归档函数视图
 
 class CategoryView(IndexView): #目录类视图
 	def get_queryset(self):
-		cate = get_object_or_404(Category,pk = self.kwargs.get('pk'))
+#		cate = get_object_or_404(Category,pk = self.kwargs.get('pk')) #方法一
+		cate = self.kwargs.get('pk')  #方法二
 		return super(CategoryView,self).get_queryset().filter(category = cate)
 
 
@@ -151,3 +159,8 @@ class PostDetailView(DetailView): #文章页面类视图
 						})
 		return context
 
+def about(request):
+	return render(request,'blog/about.html')
+
+def contact(request):
+	return render(request,'blog/contact.html')
