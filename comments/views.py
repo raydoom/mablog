@@ -10,9 +10,11 @@ def post_comment(request,post_pk):
 	post = get_object_or_404(Post,pk=post_pk)
 	if request.method == 'POST':
 		form = CommentForm(request.POST)
+		print (request.user.username)
 
 		if form.is_valid():
 			comment = form.save(commit=False)
+			comment.name = request.user.username #设定评论用户为当前登陆
 			comment.post = post
 			comment.save()
 			return redirect(post)

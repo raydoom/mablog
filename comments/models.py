@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.six import python_2_unicode_compatible
+from users.models import Users
 
 # Create your models here.  comments
 
