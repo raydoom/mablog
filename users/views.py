@@ -8,12 +8,12 @@ def register(request):
 		form = RegisterForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirct('/')
+			return redirect('/users/login/?next=/')
 
 	else:
 		form = RegisterForm()
 
 	return render(request,'users/register.html',context={'form':form})
-	
+
 def index(request):
 	return render(request,'index.html')

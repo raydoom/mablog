@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -5,6 +7,3 @@ from django.contrib.auth.models import AbstractUser
 
 class Users(AbstractUser):
 	nikename = models.CharField(max_length=50,blank=True)
-
-	class Meta(AbstractUser.Meta):
-		pass

@@ -1,8 +1,8 @@
-
+# -*- coding: utf-8 -*-
 
 from django.contrib.auth.forms import UserCreationForm
 from .models import Users
 class RegisterForm(UserCreationForm):
 	class Meta(UserCreationForm.Meta):
-		models = Users
+		model = Users
 		fields = ("username","email")
