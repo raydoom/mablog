@@ -19,9 +19,11 @@ def post_comment(request,post_pk):
 
 		else:
 			comment_list = post.comment_set.all()
+			comment_count = '10'
 			context = {'post':post,
 						'form':form,
-						'comment_list':comment_list
+						'comment_list':comment_list,
+						'comment_count':comment_count
 						}
 			return render(request,'blog_app/detail.html',context=context)
 

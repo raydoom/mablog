@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog_app', #注册blog_app应用
-    'comments', #注册comments评论应用
+    'blog_app', #blog_app应用
+    'comments', #comments评论应用
+    'users', #用户相关应用
 ]
 
 MIDDLEWARE = [
@@ -77,12 +78,23 @@ WSGI_APPLICATION = 'mablog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+#   'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mablog',
+        'USER':'root',
+        'PASSWORD':'123456',
+        'HOST':'192.168.0.64',
+        'PORT':'3306',
     }
-}
+}  
 
 
 # Password validation
@@ -122,3 +134,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+AUTH_USER_MODEL = 'users.Users'

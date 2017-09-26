@@ -1,9 +1,10 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
+from django.conf import settings
 from django.db import models
 from django.contrib import admin
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.six import python_2_unicode_compatible
 import markdown
@@ -21,8 +22,10 @@ class Tag(models.Model): #标签
     def __str__(self):
         return self.name
 
+
 @python_2_unicode_compatible
 class Post(models.Model): #文章内容
+
     title = models.CharField(max_length=70)
     body = models.TextField()
 
@@ -34,7 +37,7 @@ class Post(models.Model): #文章内容
     category = models.ForeignKey(Category)
     tags = models.ManyToManyField(Tag, blank=True)
 
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     views = models.PositiveIntegerField(default=0)  #阅读量  
 

@@ -108,6 +108,11 @@ class CategoryView(IndexView): #目录类视图
 		cate = self.kwargs.get('pk')  #方法二
 		return super(CategoryView,self).get_queryset().filter(category = cate)
 
+class TagView(IndexView): #标签类视图
+	def get_queryset(self):
+		tag = self.kwargs.get('pk')  
+		return super(TagView,self).get_queryset().filter(tags = tag)
+
 
 def detail(request,pk): #文章页面函数视图
 	post = get_object_or_404(Post,pk=pk)
