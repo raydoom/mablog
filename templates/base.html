@@ -21,10 +21,10 @@
    <header id="site-header"> 
     <div class=top>
       {% if user.is_authenticated %}
-        <p>欢迎你：<a  href="#">{{ user.username }}</a>
+        <p>欢迎你：<a  href="#">{{ user.nikename }}</a>
           <a style="text-decoration:underline;" href="{% url 'logout' %}?next={{ request.path }}">注销</a></p>
             {% else %}
-            <p>你还没有登录，请
+            <p>
             <a href="{% url 'login' %}?next={{ request.path }}" style="text-decoration:underline;">登录</a>
              或者
             <a style="text-decoration:underline;" href="{% url 'users:register' %}?next={{ request.path }}">注册</a>

@@ -56,7 +56,7 @@ class Post(models.Model): #文章内容
                 'markdown.extensions.extra',
                 'markdown.extensions.codehilite',
                 ])
-            self.excerpt = md.convert(self.body)[:54]
+            self.excerpt = md.convert(self.body)[:108]+'......'
         super(Post, self).save(*args, **kwargs)
    
 
