@@ -117,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # logging
 #logging_dir = 'C:\\Users\\ma\\Pictures\\log\\' #windows日志路径
-logging_dir = '/data/log/'                    #linux日志路径
+logging_dir = '/Users/ma/Pictures/log/'         #通用日志路径
 
 LOGGING = {
     'version': 1,
