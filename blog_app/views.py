@@ -28,7 +28,11 @@ class IndexView(ListView): #index 类视图
 
 	def get_queryset(self):
 		post_list = Post.objects.all().order_by('-created_time') #按创建时间反向排序
+
+		for post in post_list: #index页面评论数量
+			post.comments_counter = post.comment_set.all().count()
 		return post_list
+		
 		logger.debug('blog_app log1 hello')
 
 
@@ -40,7 +44,6 @@ class IndexView(ListView): #index 类视图
 
 		pagination_data = self.pagination_data(paginator, page,is_paginated)
 		context.update(pagination_data)
-
 		return context
 
 	def pagination_data(self,paginator,page,is_paginated):
@@ -168,7 +171,7 @@ class PostDetailView(DetailView): #文章页面类视图
 		context = super(PostDetailView,self).get_context_data(**kwargs)
 		form = CommentForm()
 		comment_list = self.object.comment_set.all()
-		comment_count = self.object.comment_set.all().count() #评论数量
+		comment_count = self.object.comment_set.all().count() #文章详情页面评论数量
 		context.update({'form':form,
 						'comment_list':comment_list,
 						'comment_count':comment_count

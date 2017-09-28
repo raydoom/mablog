@@ -116,8 +116,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # logging
-#logging_dir = 'C:\\Users\\ma\\Pictures\\log\\'
-logging_dir = '/data/log/'
+#logging_dir = 'C:\\Users\\ma\\Pictures\\log\\' #windows日志路径
+logging_dir = '/data/log/'                    #linux日志路径
 
 LOGGING = {
     'version': 1,
@@ -179,28 +179,28 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'django_log'],
+            'handlers': [ 'django_log'],
             'level': 'INFO',
             'propagate': True,
         },
         'django.db.backends': {
             'level': 'DEBUG',
-            'handlers': ['console','sql_log'],
+            'handlers': ['sql_log'],
         },
         # 自定义模块日志
 
         'blog_app': {
-            'handlers': ['console', 'blog_app_log'],
+            'handlers': ['blog_app_log'],
             'level': 'DEBUG',
             'propagate': True,
         },
         'comments': {
-            'handlers': ['console', 'comments_log'],
+            'handlers': ['comments_log'],
             'level': 'DEBUG',
             'propagate': True,
         },
         'users': {
-            'handlers': ['console', 'users_log'],
+            'handlers': ['users_log'],
             'level': 'DEBUG',
             'propagate': True,
         },
