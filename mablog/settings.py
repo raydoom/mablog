@@ -115,6 +115,98 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# logging
+#logging_dir = 'C:\\Users\\ma\\Pictures\\log\\'
+logging_dir = '/data/log/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s %(levelname)-8s %(message)s'
+        },
+        'detail': {
+            'format': '%(asctime)s %(levelname)-8s %(pathname)s[line:%(lineno)d] %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard',
+        },
+        'django_log': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': logging_dir+'django_log.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 100,
+            'formatter': 'detail',
+        },
+        'sql_log': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': logging_dir+'sql_log.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 100,
+            'formatter': 'detail',
+        },
+        'blog_app_log': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': logging_dir+'blog_app_log.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 100,
+            'formatter': 'detail',
+        },
+        'users_log': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': logging_dir+'users_log.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 100,
+            'formatter': 'detail',
+        },
+        'comments_log': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': logging_dir+'comments_log.log',
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 100,
+            'formatter': 'detail',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'django_log'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console','sql_log'],
+        },
+        # 自定义模块日志
+
+        'blog_app': {
+            'handlers': ['console', 'blog_app_log'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'comments': {
+            'handlers': ['console', 'comments_log'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'users': {
+            'handlers': ['console', 'users_log'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+
+    },
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

@@ -9,8 +9,11 @@ from comments.forms import CommentForm
 import markdown
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator
+import logging
 
 # Create your views here.
+
+logger = logging.getLogger('blog_app')
 
 #def index(request): #index 函数视图
 #	post_list = Post.objects.all().order_by('-created_time')
@@ -21,10 +24,13 @@ class IndexView(ListView): #index 类视图
 	template_name = 'blog/index.html'
 	context_object_name = 'post_list'
 	paginate_by = 2
+	logger.debug('blog_app log hello')
 
 	def get_queryset(self):
 		post_list = Post.objects.all().order_by('-created_time') #按创建时间反向排序
 		return post_list
+		logger.debug('blog_app log1 hello')
+
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
@@ -166,7 +172,6 @@ class PostDetailView(DetailView): #文章页面类视图
 		context.update({'form':form,
 						'comment_list':comment_list,
 						'comment_count':comment_count
-
 						})
 		return context
 
