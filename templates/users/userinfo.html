@@ -1,0 +1,26 @@
+<html>
+ <head></head>
+ <body>
+  {% extends 'base.html' %} {% load blog_tags %} {% block main %} 
+  <aboutme> 
+   <h2> 
+    <div> 
+     <p class="page-title">用户资料 </p> 
+      <hr style="height:1px;border:none;border-top:1px solid #d9d9d9;" />
+    </div> </h2> 
+   <div class="col-md-10">
+     -用户名称：{{ userinfo.username }}  <hr>
+   </div> 
+   <div class="col-md-10">
+     -用户昵称：{{ userinfo.nikename }} <a href="#">修改</a> <hr>
+   </div> 
+   <div class="col-md-10">
+     -用户邮箱：{{ userinfo.email }} <hr>
+   </div> 
+   <div class="col-md-10">
+     -上次登录：{{ userinfo.last_login }} <br>
+     -注册时间：{{ userinfo.date_joined }}
+   </div> {% endblock main %}
+  </aboutme>
+ </body>
+</html>

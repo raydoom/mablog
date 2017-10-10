@@ -21,3 +21,11 @@ def register(request):
 
 def index(request):
 	return render(request,'index.html')
+
+def userinfo(request):
+	logger.debug('users log userinfo')
+	print (request.user.username)
+	print (request.user.nikename)
+	print (request.user.email)
+
+	return render(request,'users/userinfo.html',context={'userinfo':request.user})

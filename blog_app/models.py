@@ -40,17 +40,10 @@ class Post(models.Model): #文章内容
 
     views = models.PositiveIntegerField(default=0)  #阅读量  
 
-    comments_counter = models.PositiveIntegerField(default=0)
-
-    comments_counter = '100'
+    comments_counter = '0'
 
     def __str__(self):
         return self.title
-
-    def generate_comments_counter(self):
-#        self.comments_counter = self.object.comment_set.all().count()
-        self.comments_counter = '100'
-
 
     def get_absolute_url(self):
     	return reverse('blog_app:detail',kwargs = {'pk':self.pk})

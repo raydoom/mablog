@@ -23,7 +23,7 @@ class IndexView(ListView): #index 类视图
 	model = Post
 	template_name = 'blog/index.html'
 	context_object_name = 'post_list'
-	paginate_by = 2
+	paginate_by = 4
 	logger.debug('blog_app log hello')
 
 	def get_queryset(self):

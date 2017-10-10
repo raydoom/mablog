@@ -1,33 +1,6 @@
-1:另外导航栏还有一个首页导航按钮，也希望点击它就能回到首页面，修改的任务作为练习交给你了。
-当然还有一些跳转可以完善，比如文章标题下有分类、发布时间、作者、评论量、阅读量等信息，可以设置点击分类跳转到分类页面；点击评论量就跳转到文章详情页的评论处等，这些细节部分不涉及新知识，就当做练习交给你自己完成了。
 
-2:显示正确的评论量
-有两处地方显示的评论量，显示评论量的方法很简单。回顾一下我们是如何获取某篇 post 的下的评论列表的？我们使用的是 post.comment_set.all()。all 方法返回该 post 关联的评论列表。此外模型管理器（comment_set 是一个特殊的模型管理器）还有一个 count 方法，返回的是数量，即 post 下有多少条评论，我们可以直接在模板中调用这个方法：{{ post.comment_set.count }}。将评论量替换成该模板变量就可以正确显示文章的评论数了。
-3:类视图修改
-
-
-4:将 Annotate 用于其它关联关系
-此外，annotate 方法不局限于用于本文提到的统计分类下的文章数，你也可以举一反三，只要是两个 model 类通过 ForeignKey 或者 ManyToMany 关联起来，那么就可以使用 annotate 方法来统计数量。比如下面这样一个标签系统：
-class Post(models.Model):
-    title = models.CharField(max_length=70)
-    body = models.TextField()
-    Tags = models.ManyToManyField('Tag')
-
-    def __str__(self):
-        return self.title
-
-class Tag(models.Model):
-    name = models.CharField(max_length=100)
-统计标签下的文章数：
-from django.db.models.aggregates import Count
-from blog.models import Tag
-
-# Count 计算分类下的文章数，其接受的参数为需要计数的模型的名称
-tag_list = Tag.objects.annotate(num_posts=Count('post'))
-关于 annotate 方法官方文档的说明在这里：annotate。同时也建议了解了解 objects 下的其它操作数据库的方法，以便在遇到相关问题时知道去哪里查阅。
-
-5:标签云
-
+1:评论按照时间倒序排列
+2：个人资料修改功能
 
 
 
