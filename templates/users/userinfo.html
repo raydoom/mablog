@@ -9,12 +9,12 @@
       <hr style="height:1px;border:none;border-top:1px solid #d9d9d9;" />
     </div> </h2> 
    <div class="col-md-10">
-     -用户名称：{{ userinfo.username }}  <br>
-     -<a href="{% url 'password_change' %}">修改密码</a>
+     -用户名称：{{ userinfo.username }} 
+     <a style="text-decoration:underline;" href="{% url 'password_change' %}">修改密码</a>
      <hr>
    </div> 
    <div class="col-md-10">
-     -用户昵称：{{ userinfo.nikename }} <a href="#">修改</a> <hr>
+     -用户昵称：{{ userinfo.nikename }} <hr>
    </div> 
    <div class="col-md-10">
      -用户邮箱：{{ userinfo.email }} <hr>
