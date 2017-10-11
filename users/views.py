@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
+from .forms import ChangePasswordForm
+
 import logging
 
 # Create your views here.
@@ -19,13 +21,10 @@ def register(request):
 
 	return render(request,'users/register.html',context={'form':form})
 
+
 def index(request):
 	return render(request,'index.html')
 
 def userinfo(request):
 	logger.debug('users log userinfo')
-	print (request.user.username)
-	print (request.user.nikename)
-	print (request.user.email)
-
 	return render(request,'users/userinfo.html',context={'userinfo':request.user})

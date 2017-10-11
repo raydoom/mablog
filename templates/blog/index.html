@@ -2,7 +2,7 @@
  <head></head>
  <body>
   {% extends 'base.html' %} {% load blog_tags %} {% block main %} 
-  <article class="post post-1">
+  <article class="post">
     {% for post in post_list %} 
    <h1 class="entry-title"> <a href="{{post.get_absolute_url}}">{{ post.title }}</a> </h1> 
    <article class="post post-{{ post.pk }}"> 
@@ -10,7 +10,7 @@
    <div class="entry-content clearfix"> 
     <p>{{ post.excerpt|safe }}</p> 
     <div class="read-more cl-effect-14"> 
-     <a href="{{post.get_absolute_url}}" class="more-link">继续阅读 <span class="meta-nav">→</span></a> 
+     <a href="{{post.get_absolute_url}}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
     </div> 
    </div> 
    <div class="entry-meta"> 

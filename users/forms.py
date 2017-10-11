@@ -6,3 +6,7 @@ class RegisterForm(UserCreationForm):
 	class Meta(UserCreationForm.Meta):
 		model = Users
 		fields = ("username","nikename","email")
+
+class ChangePasswordForm(UserCreationForm):
+	class Meta(UserCreationForm.Meta):
+		model = Users
