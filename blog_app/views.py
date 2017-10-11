@@ -140,6 +140,7 @@ def detail(request,pk): #文章页面函数视图
 
 	form = CommentForm() #comments相关
 	comment_list = post.comment_set.all() #comments相关
+	print (comment_list)
 	context = {'post':post,
 				'form':form,
 				'comment_list':comment_list
@@ -170,7 +171,7 @@ class PostDetailView(DetailView): #文章页面类视图
 	def get_context_data(self,**kwargs):
 		context = super(PostDetailView,self).get_context_data(**kwargs)
 		form = CommentForm()
-		comment_list = self.object.comment_set.all()
+		comment_list = self.object.comment_set.all().order_by('-created_time') #文章详情页面评论显示
 		comment_count = self.object.comment_set.all().count() #文章详情页面评论数量
 		context.update({'form':form,
 						'comment_list':comment_list,
